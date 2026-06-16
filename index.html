@@ -445,6 +445,12 @@
 </footer>
 
 <script>
+    // Force scroll to top on page load/reload
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // Smooth scrolling for navigation anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
