@@ -140,8 +140,8 @@
             STUDIO
         </div>
         <div class="hidden md:flex gap-stack-lg items-center">
-            <a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1" href="#projects">Selected Works</a>
-            <a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary opacity-70 hover:opacity-100 transition-opacity" href="#about">About</a>
+            <a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1" href="#about">About</a>
+            <a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary opacity-70 hover:opacity-100 transition-opacity" href="#projects">Selected Works</a>
             <a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary opacity-70 hover:opacity-100 transition-opacity" href="#contact">Contact</a>
         </div>
         <button id="mobile-menu-btn" class="md:hidden z-50 p-2 text-primary focus:outline-none" aria-label="Toggle Menu">
@@ -152,8 +152,8 @@
 
 <!-- Mobile Navigation Menu -->
 <div id="mobile-menu" class="fixed inset-0 z-40 bg-surface/98 flex flex-col justify-center items-center gap-10 translate-x-full transition-transform duration-500 ease-in-out md:hidden">
-    <a class="font-display-sm text-3xl tracking-tighter text-primary hover:italic transition-all" href="#projects">Selected Works</a>
     <a class="font-display-sm text-3xl tracking-tighter text-primary hover:italic transition-all" href="#about">About</a>
+    <a class="font-display-sm text-3xl tracking-tighter text-primary hover:italic transition-all" href="#projects">Selected Works</a>
     <a class="font-display-sm text-3xl tracking-tighter text-primary hover:italic transition-all" href="#contact">Contact</a>
 </div>
 
@@ -505,6 +505,47 @@
             playOverlay.classList.add('opacity-0', 'pointer-events-none');
         }
     });
+
+    // Dynamic active navigation on scroll (Scrollspy)
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const mobileMenuLinksNav = document.querySelectorAll('#mobile-menu a[href^="#"]');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-120px 0px -60% 0px', // Matches the header offset and triggers reliably
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                
+                // Update desktop links
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('text-primary', 'border-b', 'border-primary', 'pb-1');
+                        link.classList.remove('text-secondary', 'opacity-70');
+                    } else {
+                        link.classList.remove('text-primary', 'border-b', 'border-primary', 'pb-1');
+                        link.classList.add('text-secondary', 'opacity-70');
+                    }
+                });
+
+                // Update mobile links active states
+                mobileMenuLinksNav.forEach(link => {
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('italic', 'underline');
+                    } else {
+                        link.classList.remove('italic', 'underline');
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
 </script>
 </body>
 </html>
