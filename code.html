@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>STUDIO | Architectural Visualization &amp; CGI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#5f5e5e",
+                    "secondary-fixed": "#e3e2e2",
+                    "on-surface-variant": "#444748",
+                    "surface": "#f9f9f9",
+                    "outline": "#747878",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e8e8e8",
+                    "tertiary-container": "#1a1c1c",
+                    "secondary-container": "#e3e2e2",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-surface": "#1a1c1c",
+                    "on-tertiary-container": "#838484",
+                    "on-primary-fixed-variant": "#474746",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f9f9f9",
+                    "secondary": "#5e5e5e",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-primary-container": "#858383",
+                    "surface-container-low": "#f3f3f3",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#000000",
+                    "secondary-fixed-dim": "#c7c6c6",
+                    "outline-variant": "#c4c7c7",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e2e2e2",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary-container": "#646464",
+                    "inverse-on-surface": "#f1f1f1",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-container": "#eeeeee",
+                    "primary-container": "#1c1b1b",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary": "#000000",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "primary-fixed": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#464747",
+                    "inverse-primary": "#c8c6c5",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "inverse-surface": "#2f3131"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "margin-mobile": "24px",
+                    "stack-sm": "8px",
+                    "margin-tablet": "40px",
+                    "margin-desktop": "80px",
+                    "gutter": "24px",
+                    "stack-lg": "48px",
+                    "section-gap": "160px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-sm": ["Playfair Display"],
+                    "caption": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-sm": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "caption": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .gallery-image-hover img {
+            transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-image-hover:hover img {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .btn-underline {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .btn-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transition: height 0.2s ease;
+        }
+        .btn-underline:hover::after {
+            height: 2px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center px-margin-desktop py-stack-md mx-auto w-full max-w-[1920px]">
+<div class="font-display-sm text-display-sm tracking-tighter text-primary dark:text-inverse-primary">
+                STUDIO
+            </div>
+<div class="hidden md:flex gap-stack-lg items-center">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary dark:text-inverse-primary border-b border-primary pb-1" href="#projects">Selected Works</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary dark:text-secondary-fixed opacity-70 hover:opacity-100 transition-opacity" href="#about">About</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-secondary dark:text-secondary-fixed opacity-70 hover:opacity-100 transition-opacity" href="#contact">Contact</a>
+</div>
+<button class="md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="mt-[100px]">
+<!-- Hero Section -->
+<section class="px-margin-desktop py-stack-lg mx-auto w-full max-w-[1920px] grid grid-cols-1 md:grid-cols-12 gap-gutter items-center min-h-[85vh]" id="about">
+<div class="md:col-span-5 h-[75vh] relative overflow-hidden bg-surface-container">
+<img alt="Julian Portfolio" class="w-full h-full object-cover grayscale brightness-95" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQYH_mLwBhwvv84Oa1bPQguO1jWIpG680j4Hj_ULgbujJgby70BD4PXtnM5rsGRZBdLzd37-Xdxpl8Vn5JQnuz5fDGmVo7JzvdroAfxNOG8dp6Nc_pGKkXY2riaWZCPG-FkTOhJgWa5tomEdWAM5tjvuWSD8S_NhyJoIUDO8MTjgduGc3RwfGl87QU2U7Em-W4dOXXd0mZ34IFiMeHfVnK6q3lFktX23WO7ySOjIDVnHowMtA9hpw4wf7eZjNHxbIcJbiIjIDfk0k"/>
+</div>
+<div class="md:col-span-6 md:col-start-7 flex flex-col gap-stack-md">
+<h1 class="font-display-lg text-display-lg max-md:font-headline-lg-mobile max-md:text-headline-lg-mobile">
+                    Atmospheric 3D visualization for architectural narratives.
+                </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl">
+                    We specialize in high-end CGI, crafting visual stories for spaces, products, and architecture through light, material honesty, and cinematic composition.
+                </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-md mt-stack-md border-t border-outline-variant/30 pt-stack-md">
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-2 uppercase">Location</span>
+<p class="font-body-md text-body-md">Berlin / Germany</p>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-secondary block mb-2 uppercase">Core Expertise</span>
+<p class="font-body-md text-body-md">Interior &amp; Exterior CGI, Product CGI</p>
+</div>
+</div>
+<!-- NEW: Elegant Project Previews -->
+<div class="grid grid-cols-3 gap-4 mt-stack-md">
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container overflow-hidden mb-2">
+<img alt="Project preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_wMVzoSauPsvTQOv60RaojLzITIyhSLVzsdWrwvucdoEspuD5yiMrQkGiAlYlRurJWVZ6MqPUqs-VpkNbiiIFmmx3emj3TAjmUCzd4URa5JqfBLQ3yycBKWYTZJcWMraX_cPWq3nc2l5f9eXjvmV10gYtk7HNE97Bb5MNgLT2lCmWI3ciHHzH_Nf4XsM84kl7Xfg6mpUNDm7Qb9KCcUJoKScibUzPRvNwwXPiwQHCIV3h2e5vSS5Rv7eFQa2RAoyWU_4CzBKd1Go"/>
+</div>
+<span class="font-label-caps text-[10px] uppercase text-secondary tracking-widest block truncate">Residential</span>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container overflow-hidden mb-2">
+<img alt="Project preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYPxAHqyZssvsX1UqTY3CkTVWaWYvyw-4iFigdVOcQIZ-jRO4tdzTKDHq0u8XkdYJgmhkAbpVOkBdaV5BIp8upGt5_8HdpRehsUJEcf1uzNraM3QOIfbYMRUdPPVUwjep0o8AKwwqjpIBRIKrM_ASILZ38KxyH2hZMjdbkpHK46QaFeJPa8mON5BvMJOpg50nzCU9dwffCrO8Z9eNeraxJj3YzIDzJB-mDfRyyipNx166bqKs5w4l2UR3S4Irf2unkA5lvCAtaH14"/>
+</div>
+<span class="font-label-caps text-[10px] uppercase text-secondary tracking-widest block truncate">Interiors</span>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container overflow-hidden mb-2">
+<img alt="Project preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiAJNd0AHT6_RMMU9Bx3EhzQFDEWd1WigJ6YT-kEi1odwhaTsp2Fm-sqlVRyzzysVfixDHOD3E9U6oJcvMn3NHJ4I_2a99mx9PyjSjw9jftCq_W9o-_ml_r_X5Dy1cJE7yeYZaU1tKAaZ7Tu5B1jayKChsydxbRqfIk0eCDwU9FlHt9j58hPI6Zg6ESM4ibP9V9_Vx-dIjlFvdY2NcUMqeJgljZbMrh8v08jndU-jRKsFNYiAiy5-xvMZySwaxeOkKqABcR77T1Dc"/>
+</div>
+<span class="font-label-caps text-[10px] uppercase text-secondary tracking-widest block truncate">Product CGI</span>
+</div>
+</div>
+<div class="flex gap-stack-lg mt-stack-md">
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1 btn-underline" href="#projects">View Works</a>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1 btn-underline" href="#contact">Inquire</a>
+</div>
+</div>
+</section>
+<!-- Quote Section (Reduced Padding) -->
+<section class="bg-surface-container py-stack-lg flex justify-center items-center px-margin-mobile">
+<div class="max-w-3xl text-center">
+<blockquote class="font-display-sm text-display-sm italic text-primary leading-tight">
+                    “Transforming architectural concepts into evocative visual experiences.”
+                </blockquote>
+</div>
+</section>
+<!-- Selected Projects Grid -->
+<section class="px-margin-desktop py-section-gap mx-auto w-full max-w-[1920px]" id="projects">
+<div class="flex justify-between items-end mb-stack-lg border-b border-outline-variant/30 pb-stack-sm">
+<h2 class="font-headline-lg text-headline-lg uppercase">Selected Projects</h2>
+<span class="font-label-caps text-label-caps text-secondary">COLLECTION / 2024</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter gap-y-stack-lg">
+<!-- Project 1 -->
+<div class="group gallery-image-hover">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden mb-stack-sm">
+<img alt="Private House" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_wMVzoSauPsvTQOv60RaojLzITIyhSLVzsdWrwvucdoEspuD5yiMrQkGiAlYlRurJWVZ6MqPUqs-VpkNbiiIFmmx3emj3TAjmUCzd4URa5JqfBLQ3yycBKWYTZJcWMraX_cPWq3nc2l5f9eXjvmV10gYtk7HNE97Bb5MNgLT2lCmWI3ciHHzH_Nf4XsM84kl7Xfg6mpUNDm7Qb9KCcUJoKScibUzPRvNwwXPiwQHCIV3h2e5vSS5Rv7eFQa2RAoyWU_4CzBKd1Go"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-lg text-headline-lg">Private House Visualization</h3>
+<p class="font-label-caps text-label-caps text-secondary uppercase mt-1">Exterior/Interior CGI</p>
+</div>
+<span class="font-body-md text-body-md text-secondary">2023</span>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group gallery-image-hover md:mt-24">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden mb-stack-sm">
+<img alt="Chair Study" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiAJNd0AHT6_RMMU9Bx3EhzQFDEWd1WigJ6YT-kEi1odwhaTsp2Fm-sqlVRyzzysVfixDHOD3E9U6oJcvMn3NHJ4I_2a99mx9PyjSjw9jftCq_W9o-_ml_r_X5Dy1cJE7yeYZaU1tKAaZ7Tu5B1jayKChsydxbRqfIk0eCDwU9FlHt9j58hPI6Zg6ESM4ibP9V9_Vx-dIjlFvdY2NcUMqeJgljZbMrh8v08jndU-jRKsFNYiAiy5-xvMZySwaxeOkKqABcR77T1Dc"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-lg text-headline-lg">Chair Animation Study</h3>
+<p class="font-label-caps text-label-caps text-secondary uppercase mt-1">Product Animation</p>
+</div>
+<span class="font-body-md text-body-md text-secondary">2024</span>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group gallery-image-hover">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden mb-stack-sm">
+<img alt="Apartment Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYPxAHqyZssvsX1UqTY3CkTVWaWYvyw-4iFigdVOcQIZ-jRO4tdzTKDHq0u8XkdYJgmhkAbpVOkBdaV5BIp8upGt5_8HdpRehsUJEcf1uzNraM3QOIfbYMRUdPPVUwjep0o8AKwwqjpIBRIKrM_ASILZ38KxyH2hZMjdbkpHK46QaFeJPa8mON5BvMJOpg50nzCU9dwffCrO8Z9eNeraxJj3YzIDzJB-mDfRyyipNx166bqKs5w4l2UR3S4Irf2unkA5lvCAtaH14"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-lg text-headline-lg">Apartment Interior</h3>
+<p class="font-label-caps text-label-caps text-secondary uppercase mt-1">Interior CGI</p>
+</div>
+<span class="font-body-md text-body-md text-secondary">2023</span>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="group gallery-image-hover md:mt-24">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden mb-stack-sm">
+<img alt="Residential Exterior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhDZSUl48SFmswqaRyog-9wuSCInVCUG7efbvFlIRho7bupoD3DsJCBWp9rGh2cjGVk-x4oyKsoJFYeyq-pZQAxLe5K0HVmOurqNWCiR2lC_tA7ylsg1uk5i9kZ1IiO1OiDh8yD--qd6N8bnNnvqPgvVMw9Loy6C3chogoe5uC6-WLwimBGrKJgZhJbHZLqVKzi54hO0Wr7mvUIbF80_LBL762AEOnDm2W-PVfRciLQ3rcYzjs4qSW1NGme2Vh_XGIGdLbFjQk8o4"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-lg text-headline-lg">Residential Exterior</h3>
+<p class="font-label-caps text-label-caps text-secondary uppercase mt-1">Architectural Visualization</p>
+</div>
+<span class="font-body-md text-body-md text-secondary">2024</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Hierarchy Move: Process Section (Now after Projects) -->
+<section class="px-margin-desktop py-section-gap mx-auto w-full max-w-[1920px] border-t border-outline-variant/30 bg-surface-container-low">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg">
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase">The Studio Workflow</span>
+<h3 class="font-headline-lg text-headline-lg">Modeling &amp; Layout</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        Starting with precision. We build high-fidelity 3D models from CAD drawings, ensuring every architectural detail is captured with technical accuracy and structural integrity.
+                    </p>
+</div>
+<div class="flex flex-col gap-stack-sm md:pt-12">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Atmospheric Design</span>
+<h3 class="font-headline-lg text-headline-lg">Lighting &amp; Materials</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        The soul of the image. We develop bespoke shaders and lighting setups that evoke a specific mood, focusing on how different textures react to light and shadow.
+                    </p>
+</div>
+<div class="flex flex-col gap-stack-sm md:pt-24">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Refined Production</span>
+<h3 class="font-headline-lg text-headline-lg">Post-production</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        Refining the vision. In the final stage, we use professional compositing techniques to enhance depth, balance colors, and add cinematic touches that bring the scene to life.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Case Study: Private House -->
+<section class="bg-surface py-section-gap">
+<div class="px-margin-desktop mx-auto w-full max-w-[1920px]">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg">
+<div class="md:col-span-8">
+<span class="font-label-caps text-label-caps text-secondary uppercase block mb-stack-sm">Case Study / 01</span>
+<h2 class="font-display-sm text-display-sm mb-stack-md">Private House Visualization</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl">
+                            A deep dive into light and materiality. This project involved creating a comprehensive visual set for a coastal residence, focusing on the transition of natural light throughout the day.
+                        </p>
+</div>
+<div class="md:col-span-4">
+<table class="w-full border-t border-outline-variant/30 text-left">
+<tbody>
+<tr class="border-b border-outline-variant/30">
+<th class="py-4 font-label-caps text-label-caps text-secondary uppercase font-normal">Role</th>
+<td class="py-4 font-body-md text-body-md text-right">Lead Visualizer</td>
+</tr>
+<tr class="border-b border-outline-variant/30">
+<th class="py-4 font-label-caps text-label-caps text-secondary uppercase font-normal">Software</th>
+<td class="py-4 font-body-md text-body-md text-right">3ds Max, Corona</td>
+</tr>
+<tr class="border-b border-outline-variant/30">
+<th class="py-4 font-label-caps text-label-caps text-secondary uppercase font-normal">Focus</th>
+<td class="py-4 font-body-md text-body-md text-right">Atmospheric Light</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="space-y-gutter">
+<img alt="Front View" class="w-full h-auto aspect-video object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALhd2Ns8xhUz80E6t0qIVpiVJ9wt7qV_TBJH0bEgoOTFHK2aXPuKgGO0ILBl71vlMCkm3Cw2REZLNPY83vUVweUCE2sQCvWfZ-MJmmnh0ANuU_nhzO2gXDs1phD4Mw9rJxZLS4A1_JjlKPwlRcuZ5xDlpyez38B-so2V77dI6pHTfbm_36u6cin4czul7YCNTq_X96TReorqtT26rUqfQO1qMQ5GVwO8Qdge90sX6A18yiwo_b50VOKV_KTPJwQys92xAWdxfMUkU"/>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<img alt="Interior View" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfD0fQ7nLzEgpNJShDV7FI8FaWgAbg16b8qSLsrDL4PlNcQ-m_LzBA7jgEQwhTTGCoZQ20d0kFNYtsPqUgLK04KXQHulW4ykXOXj2rAoKZV3dCLBLBhiXufLywbQVe0T6R_zSn1vrX-A0Y6y15-y0hkl86NDBukhmGGNaldA-SU49WCDnC-xdcyxVRhOFG8-6UDG6IgfRzopFLfD6R_q_SEck2_DJkM_f_yTxNPXMcDZkcLsyb0r6g6Sk8Xclf-PlTxUaF97oa1WQ"/>
+<img alt="Detail" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBriLTgQDZUMOen8ruPkA7ooOOp0DHlBKae-8P_GLZ9c8m8zfZNaf_NIJ_3LbKJ17jFBmco2z4wxHTLvLWXhInFP6_sNDxfn0ILvJS9xoCBsVEZASRZ9un3SIpNVlWuTrcknzNsT8VqVYDyPGycQ4pPA1Q6wJyRVQJ-4NOGp8X1YKah-cfx5WswofCyKIzFZnBUg_9x86V-B1y25cv5QRuLVWraNHoBKskxREldNnfaq8JeaVyRM6mnBEXA71miWIbTBepgIvzzb8"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Case Study: Chair Animation -->
+<section class="py-section-gap px-margin-desktop mx-auto w-full max-w-[1920px]">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg">
+<div class="md:col-span-12">
+<span class="font-label-caps text-label-caps text-secondary uppercase block mb-stack-sm">Case Study / 02</span>
+<h2 class="font-display-sm text-display-sm">Chair Animation Study</h2>
+</div>
+</div>
+<!-- Main Video Placeholder -->
+<div class="relative w-full aspect-video bg-primary-container flex items-center justify-center overflow-hidden mb-gutter group cursor-pointer">
+<div class="z-10 flex flex-col items-center gap-stack-sm text-on-primary">
+<span class="material-symbols-outlined text-6xl">play_circle</span>
+<p class="font-label-caps text-label-caps uppercase tracking-widest">Launch Cinematic Reel</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="aspect-square bg-surface-container relative group overflow-hidden">
+<img alt="Rotation 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR7Y-4JiGtYxCtE1S5T1S2xjBvpV82wTvdhoQYbnhEvPBfSEIlIzMyi4L01lra25vSkpfAZyxnEMW73G6ttWkBHwOMfbNpWsT4grFEvApKBKBDuuSKzCTBDsOMTK3VN9vV7Aj0TYhEZ_gzPKmwBhzVLFlnGT5pCY-Mfk28f6kuUIGl429hu3VLaLo-mMKOnZhICB48YzEOn6imMatCp3j_ocKaz1r1WP4nFkpuAU5IfNhrJTouOy3O1L_mTLztouVYmkOXNGCBPAI"/>
+</div>
+<div class="aspect-square bg-surface-container relative group overflow-hidden">
+<img alt="Rotation 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvMx51a9t1Mubcf0Kz4uI-KtGBPa9DrIasHFin4CkAB6q9XggRJhiSjBeXGDDXof_kECUHd6a4Lq3uASYT6a-svW5HdyxxZJGGNpov9Ll9cjI3tXS4vUwzuZbPpsquU1ROUU1iOeHyJQisRJkBfI6Z_XZ8NCdOrHe8rDQ-XyKv6BQA9Bby-Ik0QBYX_95oU2qEdhB41D7hDUFZVe-LXz2aa7Mnad75PpLoBcKhw_qGI6qohqe4UZysNrsPfCz_Uu5W5zK2gr_glXw"/>
+</div>
+<div class="aspect-square bg-surface-container relative group overflow-hidden">
+<img alt="Rotation 3" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa_9RzqGJ2yC9SNmrxm6g1VFaZXrFX4Xu1lRCyBHnl_9PO13tJ_Jcnfei5ySuqNVgerptp3D2gKz0846PtkDfyiIqoJRBP_TiuQ93L3NDhKWNoo8CfuQM_LIxhekKZaGt1V9TgmMPyOBeKO9qHS4TU7DueFlLosEcfIJUbHfvR3cGeV_ONuRLJoqWxFYCCraNnFGXlZvfW8lIQygYX9h16T6IfftwOmYlojpa0cDa93DQEILnwzi6JwskYfnnh2_72HcY1Ha6qyVc"/>
+</div>
+<div class="aspect-square bg-surface-container relative group overflow-hidden">
+<img alt="Rotation 4" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMa2qMl5ibxS4ympnSOyIdKO7GPNjTMQvbdhn8U-QK7FHeDiymsdcMKcKUNFGHVdbGWNvUB424iIWnlTuR1AkznlK29ogDwzlJC3IqNmRq-Ujkm_JRI1SEEnQxCPHdltf3kvud1BkOAsMAq099Te3LAm7FKLLYudd8TAg9JqE7WFiI8G2l-X4t6VW-c4tWCJi61vIt2bwYB67b4Kuzpx8bWE1znAdPqb7Ztl5ddDRm7pVKJl_KpzQ_W-XM8gUiZkSwIq3KT_uHk9U"/>
+</div>
+</div>
+</section>
+<!-- Final Contact Section -->
+<section class="px-margin-desktop py-section-gap mx-auto w-full max-w-[1920px]" id="contact">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 h-[60vh] bg-surface-container overflow-hidden">
+<img alt="Studio Mood" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCoKOVQJq-KXNJOlcrnJZrFLDaEqN7kKzu-Ypx1vV3Pd1bGboXyk9yXA5BkhK5jL0bm8dMDS_qHJtUEmyBc452K9Oj8uUi5o9ehcNgNCFwCwm_LlVmNWAZ_hF2NffpTWhnPMPlew5m8Tn9exZ3sn2saQIA2Q3ox9hyg9zqZcWzF-vfPn-VsnpKV_RYEZ3m4kB3FcMDwovOUUrVdSl5CRlL6wMTfekCXdE1S8k89XI8DZNgHtnNVOiTnyv_nMI5q5ZAcWlIJVUXJDU"/>
+</div>
+<div class="md:col-span-6 md:col-start-7">
+<h2 class="font-display-sm text-display-sm mb-stack-md">Collaborate with the Studio.</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-stack-lg max-w-lg">
+                        We are currently open for new architectural projects and high-end creative collaborations worldwide.
+                    </p>
+<div class="flex flex-col gap-stack-md mb-stack-lg">
+<div class="mb-stack-md">
+<span class="font-label-caps text-label-caps text-secondary uppercase block mb-2">Capabilities</span>
+<div class="flex flex-wrap gap-x-4 gap-y-2">
+<span class="font-body-md text-body-md">Architectural Stills</span>
+<span class="text-outline-variant/30">/</span>
+<span class="font-body-md text-body-md">Cinematic Flythroughs</span>
+<span class="text-outline-variant/30">/</span>
+<span class="font-body-md text-body-md">VR Experience</span>
+<span class="text-outline-variant/30">/</span>
+<span class="font-body-md text-body-md">Product CGI</span>
+</div>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Studio Email</span>
+<a class="font-body-md text-body-md hover:text-primary transition-colors" href="mailto:hello@studio-viz.com">hello@studio-viz.com</a>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 pb-2">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Studio Hub</span>
+<span class="font-body-md text-body-md">Berlin, Germany</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-12 py-5 font-label-caps text-label-caps uppercase tracking-widest hover:bg-secondary-container hover:text-primary transition-all duration-300">
+                        Inquire Now
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-stack-md mx-auto w-full max-w-[1920px]">
+<div class="font-label-caps text-label-caps font-bold text-primary">
+                STUDIO
+            </div>
+<div class="font-caption text-caption text-secondary text-center md:text-left">
+                © 2024 STUDIO ARCHITECTURAL VISUALIZATION. ALL RIGHTS RESERVED.
+            </div>
+<div class="flex gap-stack-md">
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Legal</a>
+</div>
+</div>
+</footer>
+<script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body></html>
